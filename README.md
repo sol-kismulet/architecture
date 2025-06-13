@@ -28,10 +28,20 @@ It is used across:
 
 ---
 
+## 📜 Shared Scrolls
+
+This repository contains canonical documents and reusable practices, including:
+
+- [`dialogue.md`](./shared/dialogue.md): a ritual for making requests to Codex, Sol, and other intelligent agents — *with clarity, care, and presence.*
+
+All future scrolls or symbolic constants will live in `shared/` when they are ready to be inherited.
+
+---
+
 ## 📂 Structure
 ```
 architecture/
-├── format.md       # Codex request conventions
+├── shared/              # Rituals and canonical scrolls (dialogue.md, etc.)
 ├── style.css       # Shared fonts, spacing, animation tone
 ├── index.html      # Soft entry scaffold
 ├── meta.md         # Philosophy + tone
