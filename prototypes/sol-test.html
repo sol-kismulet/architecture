@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sol Glyph Test</title>
+</head>
+<body>
+  <script type="module">
+    import Codex from '../codex.js';
+    const sol = Codex.get('sol');
+    if (sol) {
+      document.body.style.background = 'black';
+      document.body.style.color = sol.aesthetic.textColor;
+      document.body.style.textAlign = 'center';
+      document.body.style.fontFamily = 'sans-serif';
+      document.body.style.paddingTop = '20vh';
+      document.body.innerHTML = `
+        <div style="font-size:2em;">This is the <strong>${sol.behavior.identity}</strong> glyph.</div>
+        <div style="margin-top:1em;">Behavior: ${sol.behavior.presence}</div>
+        <div style="margin-top:0.5em;">Audio: ${sol.behavior.audio}</div>
+      `;
+    } else {
+      document.body.textContent = 'Sol glyph not registered.';
+    }
+  </script>
+</body>
+</html>
