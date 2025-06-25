@@ -48,6 +48,7 @@ architecture/
 ├── consents.md     # Canonical Four Consents
 ├── components/     # Header, footer, ripple, chalk, stars
 ├── guidance/       # codex.md, chat.md, memory.md
+├── images/         # Default repository for shared imagery
 └── README.md       # This invitation
 ```
 
