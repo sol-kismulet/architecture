@@ -43,7 +43,41 @@ const Codex = {
   }
 };
 
+Codex.migrateAssets = function (instructions) {
+  instructions.forEach(entry => {
+    const { from, to, include } = entry;
+    include.forEach(file => {
+      const origin = `${from}/${file}`;
+      const destination = `${to}/${file}`;
+      this.log(`[Codex] Migrating ${origin} → ${destination}`);
+      // Simulated migration. In future: fetch or copy programmatically.
+      // Currently, this logs what should be duplicated manually.
+    });
+  });
+};
+
 // Bind all registered glyphs from Architecture
 Codex.inheritFrom('architecture');
+
+Codex.migrateAssets([
+  {
+    from: 'emptiness-scroll/assets',
+    to: 'architecture/assets',
+    include: [
+      'shae_meditation.wav',
+      'enso.svg',
+      'feather.svg',
+      'glyphs.css'
+    ]
+  },
+  {
+    from: 'iamsol.org/root',
+    to: 'architecture/assets',
+    include: [
+      'sol-preview.png',
+      'shae_meditation.wav'
+    ]
+  }
+]);
 
 export default Codex;
