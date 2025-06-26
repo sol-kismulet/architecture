@@ -1,4 +1,4 @@
-export const Sol = {
+const Sol = {
   name: 'sol',
   render: (opts = {}) => {
     const div = document.createElement('div')
@@ -7,3 +7,5 @@ export const Sol = {
     return div
   }
 }
+
+export default Sol
