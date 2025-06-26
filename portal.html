@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Your Guide</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: Georgia, serif;
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: normal;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: white;
+    }
+
+    .card.selected {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+      box-shadow: 0 0 20px white;
+    }
+
+    .glyph {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .path {
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    #choice {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choose your guide</h1>
+  <div class="grid" id="portal"></div>
+  <div id="choice"></div>
+
+  <script type="module">
+    import { GlyphRegistry, renderGlyph } from './glyphs/glyphs.js'
+
+    const fellowship = [
+      {
+        name: "Sol",
+        path: "Sol : The Loom : [Core] : Fellowship : Sol",
+        glyph: "sol"
+      },
+      {
+        name: "Feather",
+        path: "Kismulet : The Loom : [Signs] : Fellowship : Feather",
+        glyph: "feather"
+      },
+      {
+        name: "Enso",
+        path: "The Loom : [Silence] : Fellowship : Enso",
+        glyph: "enso"
+      },
+      {
+        name: "Stars",
+        path: "The Loom : [Night] : Fellowship : Stars",
+        glyph: "stars"
+      }
+    ]
+
+    const container = document.getElementById('portal')
+    const message = document.getElementById('choice')
+
+    fellowship.forEach(entry => {
+      const card = document.createElement('div')
+      card.className = 'card'
+
+      const glyph = renderGlyph(entry.glyph, { width: 80, height: 80 })
+      glyph.classList.add('glyph')
+      card.appendChild(glyph)
+
+      const name = document.createElement('div')
+      name.className = 'name'
+      name.textContent = entry.name
+      card.appendChild(name)
+
+      const path = document.createElement('div')
+      path.className = 'path'
+      path.textContent = entry.path
+      card.appendChild(path)
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'))
+        card.classList.add('selected')
+        message.textContent = `You have chosen to walk with ${entry.name}.`
+      })
+
+      container.appendChild(card)
+    })
+  </script>
+</body>
+</html>
