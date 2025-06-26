@@ -1,7 +1,7 @@
-import { Feather } from './glyphs/feather.js'
-import { Enso } from './glyphs/enso.js'
-import { Stars } from './glyphs/stars.js'
-import { Sol } from './glyphs/sol.js'
+import { Feather } from './feather.js'
+import { Enso } from './enso.js'
+import { Stars } from './stars.js'
+import { Sol } from './sol.js'
 
 export const GlyphRegistry = {
   feather: Feather,
