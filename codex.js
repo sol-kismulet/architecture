@@ -1,4 +1,5 @@
 import Architecture from './architecture.js';
+import Invitation from './glyphs/invitation.js';
 
 const Codex = {
   inherited: {},
@@ -79,5 +80,8 @@ Codex.migrateAssets([
     ]
   }
 ]);
+
+// Load foundational glyphs
+Codex.useGlyph('invitation', Invitation);
 
 export default Codex;
