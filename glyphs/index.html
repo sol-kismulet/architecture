@@ -1,0 +1,53 @@
+export const GlyphPreviewHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glyphs – architecture.kismulet.org</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    .glyph {
+      margin: 2rem auto;
+      display: block;
+    }
+    .glyph-label {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Glyph Registry</h1>
+  <div id="glyph-container"></div>
+
+  <script type="module">
+    import { GlyphRegistry, renderGlyph } from './glyphs.js'
+
+    const container = document.getElementById('glyph-container')
+
+    Object.keys(GlyphRegistry).forEach(type => {
+      const glyph = renderGlyph(type)
+      if (glyph) {
+        const wrapper = document.createElement('div')
+        wrapper.appendChild(glyph)
+
+        const label = document.createElement('div')
+        label.textContent = type
+        label.className = 'glyph-label'
+
+        wrapper.appendChild(label)
+        container.appendChild(wrapper)
+      }
+    })
+  </script>
+</body>
+</html>
+`

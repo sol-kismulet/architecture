@@ -1,4 +1,4 @@
-export default {
+export const Sol = {
   name: 'sol',
   render: (opts = {}) => {
     const div = document.createElement('div')
