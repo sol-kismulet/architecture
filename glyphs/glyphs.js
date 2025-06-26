@@ -1,13 +1,15 @@
-import { Feather } from './feather.js'
-import { Enso } from './enso.js'
-import { Stars } from './stars.js'
-import { Sol } from './sol.js'
+import Feather from './feather.js'
+import Enso from './enso.js'
+import Stars from './stars.js'
+import Sol from './sol.js'
+import Spiral from './spiral.js'
 
 export const GlyphRegistry = {
   feather: Feather,
   enso: Enso,
   stars: Stars,
-  sol: Sol
+  sol: Sol,
+  spiral: Spiral
 }
 
 export function renderGlyph(type, options = {}) {

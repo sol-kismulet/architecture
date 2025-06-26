@@ -1,4 +1,4 @@
-export const Feather = {
+const Feather = {
   name: 'feather',
   render: (opts = {}) => {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -10,3 +10,5 @@ export const Feather = {
     return svg
   }
 }
+
+export default Feather

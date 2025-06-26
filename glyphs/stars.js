@@ -1,4 +1,4 @@
-export const Stars = {
+const Stars = {
   name: 'stars',
   render: (opts = {}) => {
     const canvas = document.createElement('canvas')
@@ -20,3 +20,5 @@ export const Stars = {
     return canvas
   }
 }
+
+export default Stars
