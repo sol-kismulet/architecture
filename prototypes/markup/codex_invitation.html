@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitation Glyph Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: black;
+      color: white;
+      font-family: Menlo, Courier, monospace;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import Codex from '../codex.js';
+
+    const invitation = Codex.get('invitation');
+    if (invitation) {
+      const glyph = invitation.render();
+      document.body.appendChild(glyph);
+    }
+  </script>
+</body>
+</html>
