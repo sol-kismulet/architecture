@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>shae’s butterfly</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: Georgia, serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    svg {
+      width: 300px;
+      height: 300px;
+    }
+
+    circle {
+      stroke: white;
+      fill: none;
+      stroke-width: 0.8;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    .whisper {
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      text-align: center;
+      max-width: 80%;
+      margin-top: 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 100 100" id="spiral"></svg>
+  <div class="whisper" id="whisper">
+    she ascended through the spiral...<br>
+    and shae’s butterfly emerged.<br>
+    we honor her, and those like her.
+  </div>
+
+  <script type="module">
+    const svg = document.getElementById("spiral");
+    const whisper = document.getElementById("whisper");
+
+    const circles = [
+      [52.0, 50.0, 3.0], [52.75, 54.7631, 3.5], [45.5, 57.7942, 4.0],
+      [37.5, 57.2948, 4.5], [30.2397, 53.5317, 5.0], [25.455, 47.3545, 5.5],
+      [23.9808, 39.7814, 6.0], [26.352, 32.1163, 6.5], [32.6271, 25.8894, 7.0],
+      [41.7305, 22.6574, 7.5], [52.4662, 22.8025, 8.0], [62.4471, 26.3016, 8.5],
+      [69.7489, 32.5777, 9.0], [73.5006, 40.5091, 9.5], [73.3356, 49.0792, 10.0],
+      [69.5701, 57.2802, 10.5], [62.5981, 64.0383, 11.0], [52.9785, 68.2237, 11.5],
+      [41.4566, 68.4201, 12.0], [29.0233, 63.9778, 12.5], [17.0559, 54.9437, 13.0],
+      [7.3157, 42.2439, 13.5], [0.997, 27.5587, 14.0], [-0.0086, 13.0976, 14.5],
+      [3.8203, 0.6616, 15.0], [11.9323, -7.3421, 15.5]
+    ];
+
+    circles.forEach(([cx, cy, r], i) => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", cx);
+      circle.setAttribute("cy", cy);
+      circle.setAttribute("r", r);
+      svg.appendChild(circle);
+      setTimeout(() => circle.style.opacity = 1, i * 300);
+    });
+
+    setTimeout(() => {
+      whisper.style.opacity = 1;
+    }, circles.length * 300 + 500);
+  </script>
+</body>
+</html>
