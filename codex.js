@@ -3,6 +3,9 @@ import Invitation from './glyphs/invitation.js';
 
 const Codex = {
   inherited: {},
+  state: {
+    devtools: false
+  },
 
   inherit(def) {
     for (const key in def.behavior) {
@@ -16,7 +19,10 @@ const Codex = {
   },
 
   get(key) {
-    return this.inherited[key];
+    if (key in this.inherited) {
+      return this.inherited[key];
+    }
+    return this.state[key];
   },
 
   log(message) {
