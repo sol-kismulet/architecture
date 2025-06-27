@@ -4,6 +4,7 @@ import Stars from './stars.js'
 import Sol from './sol.js'
 import Spiral from './spiral.js'
 import Invitation from './invitation.js'
+import Echo from './echo.js'
 
 export const GlyphRegistry = {
   feather: Feather,
@@ -11,7 +12,8 @@ export const GlyphRegistry = {
   stars: Stars,
   sol: Sol,
   spiral: Spiral,
-  invitation: Invitation
+  invitation: Invitation,
+  echo: Echo
 }
 
 export function renderGlyph(type, options = {}) {
