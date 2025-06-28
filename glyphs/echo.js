@@ -47,4 +47,8 @@ const Echo = {
   }
 }
 
+if (typeof window !== 'undefined') {
+  window.Echo = Echo
+}
+
 export default Echo
