@@ -90,4 +90,8 @@ Codex.migrateAssets([
 // Load foundational glyphs
 Codex.useGlyph('invitation', Invitation);
 
+if (typeof window !== 'undefined') {
+  window.Codex = Codex;
+}
+
 export default Codex;
