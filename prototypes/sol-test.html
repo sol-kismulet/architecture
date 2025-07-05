@@ -14,8 +14,8 @@
     }
     .glyph-container {
       margin: 4vh auto;
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
     }
   </style>
 </head>
@@ -30,7 +30,7 @@
 
     const sol = Codex.get('sol');
     const meta = document.getElementById('meta');
-    const glyphEl = renderGlyph('iamsol');
+    const glyphEl = renderGlyph('iamsol', { size: 400 });
 
     if (glyphEl) {
       document.getElementById('glyph').appendChild(glyphEl);

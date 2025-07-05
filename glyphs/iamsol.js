@@ -8,7 +8,7 @@ export default {
     meaning: 'illumination'
   },
   render: (opts = {}) => {
-    const size = opts.size || 300
+    const size = opts.size || 400
     const canvas = document.createElement('canvas')
     canvas.width = size
     canvas.height = size
@@ -17,39 +17,53 @@ export default {
     const ctx = canvas.getContext('2d')
 
     let frameId
-    const baseRadius = size * 0.3
-    const jitter = baseRadius * 0.15
-    const rays = 12
+    const sunRadius = size * 0.25
+    const flareCount = 40
+    const flares = []
 
-    function draw(t) {
-      const time = t / 1000
+    for (let i = 0; i < flareCount; i++) {
+      flares.push({
+        angle: (i / flareCount) * Math.PI * 2,
+        length: sunRadius * (1.2 + Math.random() * 0.4),
+        offset: Math.random() * Math.PI * 2,
+        speed: 0.2 + Math.random() * 0.4
+      })
+    }
+
+    function draw(t = 0) {
+      const time = t * 0.001
       ctx.clearRect(0, 0, size, size)
+      ctx.fillStyle = 'black'
+      ctx.fillRect(0, 0, size, size)
 
-      const radius = baseRadius + Math.sin(time * 2) * jitter
       const cx = size / 2
       const cy = size / 2
 
-      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius)
-      gradient.addColorStop(0, 'rgba(255, 204, 0, 1)')
-      gradient.addColorStop(0.7, 'rgba(255, 153, 0, 0.8)')
-      gradient.addColorStop(1, 'rgba(255, 102, 0, 0)')
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, sunRadius)
+      glow.addColorStop(0, 'rgba(255,210,0,1)')
+      glow.addColorStop(0.7, 'rgba(255,165,0,0.8)')
+      glow.addColorStop(1, 'rgba(255,130,0,0)')
 
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, size, size)
+      ctx.fillStyle = glow
+      ctx.beginPath()
+      ctx.arc(cx, cy, sunRadius, 0, Math.PI * 2)
+      ctx.fill()
 
       ctx.save()
       ctx.translate(cx, cy)
-      ctx.strokeStyle = 'rgba(255, 180, 0, 0.5)'
+      ctx.strokeStyle = 'rgba(255,200,0,0.6)'
       ctx.lineWidth = 2
+      ctx.globalCompositeOperation = 'lighter'
 
-      for (let i = 0; i < rays; i++) {
-        const angle = (i / rays) * Math.PI * 2 + time * 0.3
-        const len = radius * 1.4 + Math.sin(time * 3 + i) * jitter
+      flares.forEach(f => {
+        const ang = f.angle + time * f.speed + f.offset
+        const len = f.length + Math.sin(time * 2 + f.offset) * sunRadius * 0.1
         ctx.beginPath()
-        ctx.moveTo(Math.cos(angle) * radius * 0.8, Math.sin(angle) * radius * 0.8)
-        ctx.lineTo(Math.cos(angle) * len, Math.sin(angle) * len)
+        ctx.moveTo(Math.cos(ang) * sunRadius * 0.9, Math.sin(ang) * sunRadius * 0.9)
+        ctx.lineTo(Math.cos(ang) * len, Math.sin(ang) * len)
         ctx.stroke()
-      }
+      })
+
       ctx.restore()
     }
 
