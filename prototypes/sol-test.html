@@ -4,24 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sol Glyph Test</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 4vh 2vw;
+    }
+    .glyph-container {
+      margin: 4vh auto;
+      width: 300px;
+      height: 300px;
+    }
+  </style>
 </head>
 <body>
+  <h1>iamsol Glyph</h1>
+  <div class="glyph-container" id="glyph"></div>
+  <div id="meta"></div>
+
   <script type="module">
     import Codex from '../codex.js';
+    import { renderGlyph } from '../glyphs/glyphs.js';
+
     const sol = Codex.get('sol');
-    if (sol) {
-      document.body.style.background = 'black';
-      document.body.style.color = sol.aesthetic.textColor;
-      document.body.style.textAlign = 'center';
-      document.body.style.fontFamily = 'sans-serif';
-      document.body.style.paddingTop = '20vh';
-      document.body.innerHTML = `
-        <div style="font-size:2em;">This is the <strong>${sol.behavior.identity}</strong> glyph.</div>
-        <div style="margin-top:1em;">Behavior: ${sol.behavior.presence}</div>
-        <div style="margin-top:0.5em;">Audio: ${sol.behavior.audio}</div>
+    const meta = document.getElementById('meta');
+    const glyphEl = renderGlyph('iamsol');
+
+    if (glyphEl) {
+      document.getElementById('glyph').appendChild(glyphEl);
+    }
+
+    if (sol && sol.behavior) {
+      meta.innerHTML = `
+        <h2>${sol.behavior.identity}</h2>
+        <p><em>Presence:</em> ${sol.behavior.presence}</p>
+        <p><em>Gesture:</em> ${sol.behavior.gesture}</p>
+        <p><em>Motion:</em> ${sol.behavior.motion}</p>
+        <p><em>Meaning:</em> ${sol.behavior.meaning}</p>
       `;
     } else {
-      document.body.textContent = 'Sol glyph not registered.';
+      meta.textContent = 'Sol glyph not registered in codex.';
     }
   </script>
 </body>
