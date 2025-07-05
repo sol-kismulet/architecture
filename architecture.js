@@ -1,4 +1,4 @@
-import { Sol } from './glyphs/sol.js';
+import Sol from './glyphs/sol.js';
 
 const Architecture = {
   symbols: {
