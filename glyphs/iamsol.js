@@ -21,7 +21,7 @@ export default {
     if (!document.getElementById('iamsol-style')) {
       const style = document.createElement('style');
       style.id = 'iamsol-style';
-      style.textContent = `@keyframes iamsol-pulse {0%{text-shadow:0 0 6px rgba(255,255,255,0.4);}50%{text-shadow:0 0 12px rgba(255,255,255,0.7);}100%{text-shadow:0 0 6px rgba(255,255,255,0.4);}}\n@keyframes iamsol-breathe {0%{color:rgba(255,255,255,0.4);}50%{color:rgba(255,255,255,0.7);}100%{color:rgba(255,255,255,0.4);}}`;
+      style.textContent = `@keyframes iamsol-pulse {0%{text-shadow:0 0 6px rgba(255,255,255,0.4);}50%{text-shadow:0 0 12px rgba(255,255,255,0.7);}100%{text-shadow:0 0 6px rgba(255,255,255,0.4);}}`;
       document.head.appendChild(style);
     }
 
@@ -70,66 +70,6 @@ export default {
     solText.style.animation = 'iamsol-pulse 4s infinite ease-in-out';
     center.appendChild(solText);
 
-    const toggleContainer = document.createElement('div');
-    toggleContainer.style.position = 'absolute';
-    toggleContainer.style.bottom = '6rem';
-    toggleContainer.style.left = '50%';
-    toggleContainer.style.transform = 'translateX(-50%)';
-    toggleContainer.style.display = 'flex';
-    toggleContainer.style.alignItems = 'center';
-    toggleContainer.style.gap = '0.5rem';
-    toggleContainer.style.zIndex = '15';
-    toggleContainer.style.opacity = '0';
-    toggleContainer.style.transition = 'opacity 2s ease';
-    container.appendChild(toggleContainer);
-
-    const label = document.createElement('label');
-    label.textContent = 'breathe';
-    label.style.animation = 'iamsol-breathe 5s ease-in-out infinite alternate';
-    toggleContainer.appendChild(label);
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.style.appearance = 'none';
-    checkbox.style.width = '36px';
-    checkbox.style.height = '20px';
-    checkbox.style.background = '#444';
-    checkbox.style.borderRadius = '10px';
-    checkbox.style.position = 'relative';
-    checkbox.style.outline = 'none';
-    checkbox.style.cursor = 'pointer';
-    toggleContainer.appendChild(checkbox);
-
-    const knob = document.createElement('span');
-    knob.style.width = '16px';
-    knob.style.height = '16px';
-    knob.style.background = '#ccc';
-    knob.style.borderRadius = '50%';
-    knob.style.position = 'absolute';
-    knob.style.top = '2px';
-    knob.style.left = '2px';
-    knob.style.transition = '0.3s';
-    checkbox.appendChild(knob);
-
-    const audio = document.createElement('audio');
-    audio.loop = true;
-    const source = document.createElement('source');
-    source.src = 'shae_meditation.wav';
-    source.type = 'audio/wav';
-    audio.appendChild(source);
-    container.appendChild(audio);
-
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        audio.play();
-        knob.style.left = '18px';
-        knob.style.background = '#76f0c1';
-      } else {
-        audio.pause();
-        knob.style.left = '2px';
-        knob.style.background = '#ccc';
-      }
-    });
 
     const ctx = canvas.getContext('2d');
     const particles = [];
@@ -176,7 +116,6 @@ export default {
     setTimeout(() => { iAmText.style.opacity = '0'; }, 3000);
     setTimeout(() => {
       solText.style.opacity = '1';
-      toggleContainer.style.opacity = '1';
     }, 5500);
 
     container.cleanup = () => cancelAnimationFrame(frameId);
